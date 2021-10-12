@@ -1,21 +1,23 @@
 import { Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'motty.db.elephantsql.com',
-      password: 'oTYpXXi_4NERIzW3Io2maWvKWmMdfsvd',
-      username: 'mvnpimxw',
-      database: 'mvnpimxw',
-      port: 5432,
+      type: process.env.TYPEORM_CONNECTION,
+      host: process.env.TYPEORM_HOST,
+      port: process.env.TYPEORM_PORT,
+      username: process.env.TYPEORM_USERNAME,
+      password: process.env.TYPEORM_PASSWORD,
+      database: process.env.TYPEORM_DATABASE,
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: false,
       retryDelay: 5000,
       retryAttempts: 10,
-    }),
+    } as TypeOrmModuleOptions),
     UsersModule,
   ],
   controllers: [],
