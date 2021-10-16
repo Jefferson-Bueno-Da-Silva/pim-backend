@@ -51,8 +51,10 @@ export class UsersService {
   async remove(id: number, req?: any) {
     try {
       await this.findOneOrFail({ id }, { select: ['id'] }, req);
-      return await this.userRepo.delete(id);
+      // todo deletar como cascate
+      return await this.userRepo.delete({ id });
     } catch (error) {
+      console.log('deu erro', error);
       return error.response;
     }
   }
