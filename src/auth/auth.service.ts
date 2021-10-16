@@ -3,6 +3,7 @@ import { Users } from 'src/users/entities/user.entity';
 import { UsersService } from 'src/users/users.service';
 import { compareSync } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
+import { CreateUserDto } from 'src/users/dto/create-user.dto';
 
 @Injectable()
 export class AuthService {
@@ -35,5 +36,10 @@ export class AuthService {
         email: user.email,
       },
     };
+  }
+
+  async register(user: CreateUserDto) {
+    const registeredUser = await this.userService.create(user);
+    return this.login(registeredUser);
   }
 }
