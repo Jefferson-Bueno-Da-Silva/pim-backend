@@ -3,6 +3,7 @@ import { UsersModule } from './app/users/users.module';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
+import { RoomsModule } from './app/rooms/rooms.module';
 
 @Module({
   imports: [
@@ -18,9 +19,11 @@ import { AuthModule } from './auth/auth.module';
       synchronize: false,
       retryDelay: 5000,
       retryAttempts: 10,
+      autoLoadEntities: true,
     } as TypeOrmModuleOptions),
     UsersModule,
     AuthModule,
+    RoomsModule,
   ],
   controllers: [],
   providers: [],
