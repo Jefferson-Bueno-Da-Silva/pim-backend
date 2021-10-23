@@ -13,7 +13,10 @@ export class ReservesService {
   ) {}
 
   async findAll(req: any) {
-    return await this.reserveRepo.find({ where: { id_user: req?.user.id } });
+    return await this.reserveRepo.find({
+      relations: ['room'],
+      where: { id_user: req?.user.id },
+    });
   }
 
   create(createReserveDto: CreateReserveDto) {

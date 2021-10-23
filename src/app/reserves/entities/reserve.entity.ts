@@ -1,4 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Room } from 'src/app/rooms/entities/room.entity';
+import { Users } from 'src/app/users/entities/user.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({ name: 'reservas', synchronize: false })
 export class Reserve {
@@ -11,14 +19,12 @@ export class Reserve {
   @Column('timestamp without time zone')
   data_saida: Date;
 
-  @Column()
-  id_quarto: number;
-
-  @Column()
-  id_cliente: number;
-
-  @Column()
-  id_funcionario: number;
+  @ManyToOne((type) => Room)
+  @JoinColumn({
+    name: 'id_quarto',
+    referencedColumnName: 'id',
+  })
+  room: Room;
 
   @Column()
   id_user: number;
