@@ -19,9 +19,6 @@ export class Room {
   @Column({ name: 'qtd_pessoas' })
   howManyPeople: number;
 
-  @Column({ name: 'id_categoria_quarto' })
-  categoryId: number;
-
   @Column({ name: 'descricao' })
   description: string;
 
