@@ -1,13 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {
-  Connection,
-  FindConditions,
-  FindOneOptions,
-  Repository,
-} from 'typeorm';
-import { CreateRoomDto } from './dto/create-room.dto';
-import { UpdateRoomDto } from './dto/update-room.dto';
+import { FindConditions, FindOneOptions, Repository } from 'typeorm';
 import { Room } from './entities/room.entity';
 
 @Injectable()
