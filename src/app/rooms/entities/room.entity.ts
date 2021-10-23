@@ -25,7 +25,7 @@ export class Room {
   @Column({ name: 'descricao' })
   description: string;
 
-  @ManyToOne((type) => CategoryRoom, (roomCategory) => roomCategory.rooms)
+  @ManyToOne((type) => CategoryRoom)
   @JoinColumn({
     name: 'id_categoria_quarto',
     referencedColumnName: 'id',

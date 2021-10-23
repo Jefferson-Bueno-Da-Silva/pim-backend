@@ -14,7 +14,4 @@ export class CategoryRoom {
 
   @Column({ name: 'valor_categoria_quarto' })
   value: number;
-
-  @OneToMany((type) => Room, (room) => room.roomCategory)
-  rooms: Room[];
 }

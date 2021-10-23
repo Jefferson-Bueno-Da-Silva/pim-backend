@@ -16,7 +16,10 @@ export class RoomsService {
     options?: FindOneOptions<Room>,
   ) {
     try {
-      return await this.roomsRepo.findOneOrFail(conditions, options);
+      return await this.roomsRepo.findOneOrFail(conditions, {
+        relations: ['roomCategory'],
+        ...options,
+      });
     } catch (error) {
       throw new NotFoundException(error.message);
     }
