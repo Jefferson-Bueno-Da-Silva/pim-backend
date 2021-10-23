@@ -1,3 +1,4 @@
+import { CategoryRoom } from 'src/app/category-rooms/entities/category-room.entity';
 import {
   Column,
   Entity,
@@ -13,17 +14,21 @@ export class Room {
   id: number;
 
   @Column({ name: 'numero_quarto' })
-  numberRoom: string;
+  roomNumber: string;
 
   @Column({ name: 'qtd_pessoas' })
   howManyPeople: number;
 
   @Column({ name: 'id_categoria_quarto' })
-  roomCategoryId: number;
+  categoryId: number;
 
   @Column({ name: 'descricao' })
   description: string;
 
-  // @ManyToOne((type) => RoomCategory, (roomCategory) => roomCategory.rooms)
-  // roomCategory: RoomCategory;
+  @ManyToOne((type) => CategoryRoom, (roomCategory) => roomCategory.rooms)
+  @JoinColumn({
+    name: 'id_categoria_quarto',
+    referencedColumnName: 'id',
+  })
+  roomCategory: CategoryRoom;
 }

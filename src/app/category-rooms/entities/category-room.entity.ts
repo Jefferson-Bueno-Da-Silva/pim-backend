@@ -7,14 +7,14 @@ export class CategoryRoom {
   id: number;
 
   @Column({ name: 'nome_categoria_quarto' })
-  nameCategory: string;
+  categoryName: string;
 
   @Column({ name: 'qtd_camas' })
-  quantityBeds: number;
+  qtyBeds: number;
 
-  @Column({ name: 'valor_categoria_quarto', type: 'numeric' })
-  ValueCategoryRoom: number;
+  @Column({ name: 'valor_categoria_quarto' })
+  value: number;
 
-  // @OneToMany((type) => Room, room => room.roomCategory)
-  // rooms: Room[];
+  @OneToMany((type) => Room, (room) => room.roomCategory)
+  rooms: Room[];
 }

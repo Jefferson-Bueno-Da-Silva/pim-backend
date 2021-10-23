@@ -8,7 +8,7 @@ export class RoomsService {
   constructor(@InjectRepository(Room) private roomsRepo: Repository<Room>) {}
 
   async findAll() {
-    return await this.roomsRepo.find();
+    return await this.roomsRepo.find({ relations: ['roomCategory'] });
   }
 
   async findOne(
