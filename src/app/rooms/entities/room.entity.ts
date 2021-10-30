@@ -22,6 +22,9 @@ export class Room {
   @Column({ name: 'descricao' })
   description: string;
 
+  @Column({ name: 'imagem' })
+  image: string;
+
   @ManyToOne((type) => CategoryRoom)
   @JoinColumn({
     name: 'id_categoria_quarto',
