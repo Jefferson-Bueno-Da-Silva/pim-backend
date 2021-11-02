@@ -28,4 +28,10 @@ export class Reserve {
 
   @Column()
   id_user: number;
+
+  @Column()
+  id_quarto: number;
+
+  @Column()
+  checkin: boolean;
 }

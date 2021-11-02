@@ -8,6 +8,7 @@ import {
   Delete,
   UseGuards,
   Req,
+  Query,
 } from '@nestjs/common';
 import { ReservesService } from './reserves.service';
 import { CreateReserveDto } from './dto/create-reserve.dto';
@@ -20,27 +21,26 @@ export class ReservesController {
   constructor(private readonly reservesService: ReservesService) {}
 
   @Get()
-  findAll(@Req() req: any) {
-    return this.reservesService.findAll(req);
+  findAll(@Req() req: any, @Query() q: any) {
+    return this.reservesService.findAll(req, q);
   }
 
   @Post()
-  create(@Body() createReserveDto: CreateReserveDto) {
-    return this.reservesService.create(createReserveDto);
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.reservesService.findOne(+id);
+  create(@Body() createReserveDto: CreateReserveDto, @Req() req: any) {
+    return this.reservesService.create(createReserveDto, req);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateReserveDto: UpdateReserveDto) {
-    return this.reservesService.update(+id, updateReserveDto);
+  update(
+    @Param('id') id: string,
+    @Body() updateReserveDto: UpdateReserveDto,
+    @Req() req: any,
+  ) {
+    return this.reservesService.update(+id, updateReserveDto, req);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.reservesService.remove(+id);
+  remove(@Param('id') id: string, @Req() req: any) {
+    return this.reservesService.remove(+id, req);
   }
 }
