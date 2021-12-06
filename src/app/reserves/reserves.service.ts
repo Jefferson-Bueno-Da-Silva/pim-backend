@@ -25,7 +25,8 @@ export class ReservesService {
   }
 
   async create(createReserveDto: CreateReserveDto, req: any) {
-    await this.findOneOrFail({ id_user: createReserveDto.id_user }, {}, req);
+    if (!!req?.user.id && req?.user.id !== createReserveDto.id_user)
+      throw new UnauthorizedException(MessageHelper.PERMISSION_UNAUTHORIZED);
 
     const newReserve = this.reserveRepo.create({
       ...createReserveDto,
